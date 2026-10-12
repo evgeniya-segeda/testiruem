@@ -47,6 +47,9 @@
       line-height: 1.2;
       margin-bottom: 1.75rem;
       letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: rise-in 0.7s ease-out forwards;
     }
 
     ol {
@@ -67,11 +70,24 @@
       color: var(--muted);
       padding-bottom: 0.85rem;
       border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise-in 0.55s ease-out forwards;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
+
+    li:nth-child(1) { animation-delay: 0.2s; }
+    li:nth-child(2) { animation-delay: 0.35s; }
+    li:nth-child(3) { animation-delay: 0.5s; }
 
     li:last-child {
       border-bottom: none;
       padding-bottom: 0;
+    }
+
+    li:hover {
+      color: var(--ink);
+      transform: translateX(6px);
     }
 
     li::before {
@@ -86,6 +102,34 @@
       color: var(--accent);
       border: 1.5px solid var(--accent);
       border-radius: 0.35rem;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    li:hover::before {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    @keyframes rise-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      h1,
+      li {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      li:hover,
+      li:hover::before {
+        transform: none;
+      }
     }
   </style>
 </head>
